@@ -1,0 +1,28 @@
+Feature: Set of test cases to test coctail DB
+
+  Scenario: As an application tester I should be able to see Response code is OK
+    When I make a Get call to the Get Vodka status code
+    Then I make a Get call to the Get Gin status code
+    And I make a Get call to the Get Wine status code
+
+  Scenario: As an application tester I execute Below API’s to validate Ingredient ID is not equal to null
+    When I make a Get call to the Get Vodka id body
+    Then I make a Get call to the Get Gin id body
+    And I make a Get call to the Get Wine id body
+
+  Scenario: As an application tester I execute Below API’s I should be able to validate ingredient description is not null
+    When I make a Get call to the Get Vodka ingredient
+    Then I make a Get call to the Get Gin ingredient
+    And I make a Get call to the Get Wine ingredient
+
+  Scenario: As an Application tester I execute any non-Alchogolic ingredient
+    When I make a Get call to the Get Water
+    
+
+  Scenario: As an Application tester I should be able to search by Coctail name and see response code
+    When I make a Get call to the Get Margarita status code
+    Then I make a Get call to the Get Mojito status code
+    And I make a Get call to the Get Manhattan status code
+
+  Scenario: As an application tester see return drinks as a null when cockatil is not in DB
+    When I make Get call to the Get null

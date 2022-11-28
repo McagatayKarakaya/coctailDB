@@ -1,0 +1,214 @@
+
+
+import static org.hamcrest.Matchers.equalTo;
+
+import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class GetCoctailDBSteps {
+
+	RequestSpecification getSpec;
+	Response resp;
+
+	@When("I make a Get call to the Get Vodka status code")
+	public void i_make_a_get_call_to_the_get_vodka_status_code() {
+
+		RestAssured.baseURI = "https://www.thecocktaildb.com";
+		getSpec = RestAssured.given();
+		resp = getSpec.when().get("/api/json/v1/1/search.php?i=vodka");
+
+		System.out.println("Get Vodka Status code is " + resp.statusCode() + " OK");
+
+		resp.then().assertThat().statusCode(200);
+
+	}
+
+	@When("I make a Get call to the Get Gin status code")
+	public void i_make_a_get_call_to_the_get_gin_status_code() {
+
+		getSpec = RestAssured.given();
+		resp = getSpec.when().get("/api/json/v1/1/search.php?i=gin");
+
+		System.out.println("Get Gin Status code is " + resp.statusCode() + " OK");
+
+		resp.then().assertThat().statusCode(200);
+
+	}
+
+	@When("I make a Get call to the Get Wine status code")
+	public void i_make_a_get_call_to_the_get_wine_status_code() {
+
+		getSpec = RestAssured.given();
+		resp = getSpec.when().get("/api/json/v1/1/search.php?i=wine");
+
+		System.out.println("Get Wine Status code is " + resp.statusCode() + " OK");
+
+		resp.then().assertThat().statusCode(200);
+
+	}
+
+	@When("I make a Get call to the Get Vodka id body")
+	public void i_make_a_get_call_to_the_get_vodka_body() {
+
+		getSpec = RestAssured.given();
+		resp = getSpec.when().get("/api/json/v1/1/search.php?i=vodka");
+
+		if (resp != null) {
+			System.out.println("Vodka Body has description is not Null");
+
+			String vodkaString = resp.getBody().asString();
+
+			boolean boVo = vodkaString.contains("1");
+
+			System.out.println("Vodka Id equals to 1 " + boVo);
+		}
+
+	}
+
+	@When("I make a Get call to the Get Gin id body")
+	public void i_make_a_get_call_to_the_get_gin_body() {
+
+		getSpec = RestAssured.given();
+		resp = getSpec.when().get("/api/json/v1/1/search.php?i=gin");
+
+		if (resp != null) {
+			System.out.println("Gin Body has description is not Null");
+			String ginString = resp.getBody().asString();
+
+			boolean boGi = ginString.contains("2");
+
+			System.out.println("Gin Id equals to 2 " + boGi);
+		}
+
+	}
+
+	@When("I make a Get call to the Get Wine id body")
+	public void i_make_a_get_call_to_the_get_wine_body() {
+
+		getSpec = RestAssured.given();
+		resp = getSpec.when().get("/api/json/v1/1/search.php?i=wine");
+
+		if (resp != null) {
+			System.out.println("Wine Body has description is not Null");
+			String vodkaString = resp.getBody().asString();
+
+			boolean boWi = vodkaString.contains("528");
+			System.out.println("Wine id is 528 " + boWi);
+		}
+
+	}
+
+	@When("I make a Get call to the Get Vodka ingredient")
+	public void i_make_a_get_call_to_the_get_vodka_ingredient() {
+
+		getSpec = RestAssured.given();
+		resp = getSpec.when().get("/api/json/v1/1/search.php?i=vodka");
+
+		if (resp != null) {
+			String vodka = resp.getBody().asString();
+
+			boolean voBod = vodka.contains("ingredients");
+
+			System.out.println("Vodka body has ingredients " + voBod);
+		}
+
+	}
+
+	@When("I make a Get call to the Get Gin ingredient")
+	public void i_make_a_get_call_to_the_get_gin_ingredient() {
+
+		getSpec = RestAssured.given();
+		resp = getSpec.when().get("/api/json/v1/1/search.php?i=gin");
+
+		if (resp != null) {
+			String gin = resp.getBody().asString();
+
+			boolean voGin = gin.contains("ingredients");
+
+			System.out.println("Vodka body has ingredients " + voGin);
+		}
+	}
+
+	@When("I make a Get call to the Get Wine ingredient")
+	public void i_make_a_get_call_to_the_get_wine_ingredient() {
+
+		getSpec = RestAssured.given();
+		resp = getSpec.when().get("/api/json/v1/1/search.php?i=gin");
+
+		if (resp != null) {
+			String wine = resp.getBody().asString();
+
+			boolean voWine = wine.contains("ingredients");
+
+			System.out.println("Vodka body has ingredients " + voWine);
+		}
+
+	}
+
+	@When("I make a Get call to the Get Water")
+	public void i_make_a_get_call_to_the_get_water() {
+
+		getSpec = RestAssured.given();
+		resp = getSpec.when().get("/api/json/v1/1/search.php?i=water");
+
+		if (resp != null) {
+
+			resp.then().assertThat().body("ABV", equalTo(null));
+
+			System.out.println("Non-alcoholic body ABV is NULL");
+		}
+
+	}
+
+	@When("I make a Get call to the Get Margarita status code")
+	public void i_make_a_get_call_to_the_get_margarita_status_code() {
+
+		getSpec = RestAssured.given();
+		resp = getSpec.when().get("/api/json/v1/1/search.php?i=margarita");
+
+		System.out.println("Get Margarita Status code is " + resp.statusCode() + " OK");
+
+		resp.then().assertThat().statusCode(200);
+
+	}
+
+	@When("I make a Get call to the Get Mojito status code")
+	public void i_make_a_get_call_to_the_get_mojito_status_code() {
+
+		getSpec = RestAssured.given();
+		resp = getSpec.when().get("/api/json/v1/1/search.php?i=mojito");
+
+		System.out.println("Get Mojito Status code is " + resp.statusCode() + " OK");
+
+		resp.then().assertThat().statusCode(200);
+
+	}
+
+	@When("I make a Get call to the Get Manhattan status code")
+	public void i_make_a_get_call_to_the_get_manhattan_status_code() {
+
+		getSpec = RestAssured.given();
+		resp = getSpec.when().get("/api/json/v1/1/search.php?i=manhattan");
+
+		System.out.println("Get Manhattan Status code is " + resp.statusCode() + " OK");
+
+		resp.then().assertThat().statusCode(200);
+
+	}
+
+	@When("I make Get call to the Get null")
+	public void i_make_get_call_to_the_get_null() {
+		getSpec = RestAssured.given();
+		resp = getSpec.when().get("/api/json/v1/1/search.php?s=raki");
+
+		if (resp != null) {
+
+			resp.then().assertThat().body("drinks", equalTo(null));
+
+			System.out.println("Raki Body has description drinks is NULL");
+		}
+	}
+
+}
